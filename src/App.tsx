@@ -1,7 +1,7 @@
 import "./App.css";
 import { TonConnectButton } from "@tonconnect/ui-react";
 import { Counter } from "./components/Counter";
-import { CounterCoupe } from "./components/CounterCoupe";
+import  TelegramUsername  from "./components/TelegramUsername";
 
 import { Jetton } from "./components/Jetton";
 import { TransferTon } from "./components/TransferTon";
@@ -46,7 +46,7 @@ function App() {
             </Button>
           </FlexBoxRow>
           <Counter /> 
-          <CounterCoupe />
+          <TelegramUsername />
           <TransferTon />
           <Jetton />
         </FlexBoxCol>
