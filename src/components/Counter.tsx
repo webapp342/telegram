@@ -20,7 +20,7 @@ export function Counter() {
 
       <Card>
         <FlexBoxCol>
-          <h3>Counter</h3>
+          <h3>Counter24</h3>
           <FlexBoxRow>
             <b>Address</b>
             <Ellipsis>{address}</Ellipsis>
