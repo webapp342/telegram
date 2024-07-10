@@ -4,7 +4,6 @@ import { TonConnectUIProvider } from "@tonconnect/ui-react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
-import { initializeBot } from './services/telegramBotService';
 
 // this manifest is used temporarily for development purposes
 const manifestUrl =
@@ -14,8 +13,7 @@ const queryClient = new QueryClient({
   defaultOptions: { queries: { refetchOnWindowFocus: false } },
 });
 
-// Telegram botunu başlat
-initializeBot();
+
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <TonConnectUIProvider manifestUrl={manifestUrl}>
