@@ -1,3 +1,4 @@
+// /src/App.tsx
 import React from 'react';
 import TelegramUsernameDisplay from './components/TelegramUsernameDisplay';
 import styled from "styled-components";
@@ -8,6 +9,7 @@ import { TransferTon } from "./components/TransferTon";
 import { Button, FlexBoxCol, FlexBoxRow } from "./components/styled/styled";
 import { useTonConnect } from "./hooks/useTonConnect";
 import { CHAIN } from "@tonconnect/protocol";
+import InviteLink from './components/InviteLink';
 
 const StyledApp = styled.div`
   background-color: #e8e8e8;
@@ -44,6 +46,7 @@ function App() {
             </Button>
           </FlexBoxRow>
           <TelegramUsernameDisplay />
+          <InviteLink /> {/* Davet linki bileşenini buraya ekleyelim */}
           <Counter />
           <TransferTon />
           <Jetton />
