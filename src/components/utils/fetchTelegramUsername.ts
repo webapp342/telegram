@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-const TELEGRAM_API_KEY = 'your_telegram_api_key';
+const TELEGRAM_API_KEY = '6990458213:AAFtjc4vwmLwxDfU6qewLyCZfgujk54rjps';
 
 const fetchTelegramUsername = async () => {
   try {
