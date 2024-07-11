@@ -9,6 +9,7 @@ import { TransferTon } from "./components/TransferTon";
 import { Button, FlexBoxCol, FlexBoxRow } from "./components/styled/styled";
 import { useTonConnect } from "./hooks/useTonConnect";
 import { CHAIN } from "@tonconnect/protocol";
+import TelegramInviteLinkComponent from './components/TelegramInviteLinkComponent';
 
 const StyledApp = styled.div`
   background-color: #e8e8e8;
@@ -45,6 +46,10 @@ function App() {
             </Button>
           </FlexBoxRow>
           <TelegramUsernameDisplay />
+          <          TelegramInviteLinkComponent
+ />
+
+          TelegramInviteLinkComponent
           <Counter />
           <TransferTon />
           <Jetton />
