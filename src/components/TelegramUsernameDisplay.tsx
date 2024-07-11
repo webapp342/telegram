@@ -31,7 +31,7 @@ const TelegramUsernameDisplay: React.FC = () => {
         <>
           <p>Telegram Kullanıcı Adı: {telegramUsername}</p>
           <p>
-            Davet Linki: <a href={generateInviteLink()} target="_blank" rel="noopener noreferrer">Davet Linkine Git</a>
+            Davet Linki: <a href={generateInviteLink()} target="_blank" rel="noopener noreferrer">{generateInviteLink()}</a>
           </p>
         </>
       ) : (
