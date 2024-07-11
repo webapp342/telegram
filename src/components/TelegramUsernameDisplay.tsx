@@ -17,10 +17,23 @@ const TelegramUsernameDisplay: React.FC = () => {
     }
   }, []);
 
+  // Davet linki oluşturma fonksiyonu
+  const generateInviteLink = () => {
+    if (telegramUsername) {
+      return `https://t.me/kastamonmubot?start=${telegramUsername}`;
+    }
+    return 'https://t.me/kastamonmubot';
+  };
+
   return (
     <div>
       {telegramUsername ? (
-        <p>Telegram Kullanıcı Adı: {telegramUsername}</p>
+        <>
+          <p>Telegram Kullanıcı Adı: {telegramUsername}</p>
+          <p>
+            Davet Linki: <a href={generateInviteLink()} target="_blank" rel="noopener noreferrer">Davet Linkine Git</a>
+          </p>
+        </>
       ) : (
         <p>Kullanıcı adı bulunamadı.</p>
       )}
