@@ -11,6 +11,21 @@ const TelegramUsernameDisplay: React.FC = () => {
     // Kullanıcı adı mevcutsa state'e kaydediyoruz
     if (initData && initData.user && initData.user.username) {
       setTelegramUsername(initData.user.username);
+      // Kullanıcı adını backend'e gönder
+      fetch('https://https://telegram-backend-eight.vercel.app//api/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username: initData.user.username }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
     } else {
       console.error('Kullanıcı bilgileri alınamadı veya kullanıcı adı mevcut değil');
       setTelegramUsername(null); // Açıkça null olarak ayarlıyoruz
