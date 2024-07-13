@@ -21,21 +21,16 @@ const TelegramUsernameDisplay: React.FC = () => {
           setDoc(userDoc, {
             username: username,
             points: 0,
-          })
-          .then(() => {
+          }).then(() => {
             console.log('Kullanıcı adı Firestore\'a kaydedildi:', username);
-          })
-          .catch((error) => {
-            console.error('Firestore hatası:', error);
+            const urlParams = new URLSearchParams(window.location.search);
+            const inviter = urlParams.get('start');
+            if (inviter) {
+              updateInviterPoints(inviter);
+            }
           });
         }
       });
-
-      const urlParams = new URLSearchParams(window.location.search);
-      const inviter = urlParams.get('start');
-      if (inviter) {
-        updateInviterPoints(inviter);
-      }
     } else {
       console.error('Kullanıcı bilgileri alınamadı veya kullanıcı adı mevcut değil');
       setTelegramUsername(null);
