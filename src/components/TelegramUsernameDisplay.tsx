@@ -7,12 +7,9 @@ const firestore = getFirestore(app);
 
 const TelegramUsernameDisplay: React.FC = () => {
   const [telegramUsername, setTelegramUsername] = useState<string | null>(null);
-  const [invitedBy, setInvitedBy] = useState<string | null>(null);
 
   useEffect(() => {
     const initData = WebApp.initDataUnsafe;
-    const urlParams = new URLSearchParams(window.location.search);
-    const invitedUser = urlParams.get('start'); // Davet eden kullanıcı
 
     if (initData && initData.user && initData.user.username) {
       const username = initData.user.username;
@@ -20,26 +17,20 @@ const TelegramUsernameDisplay: React.FC = () => {
 
       const userDocRef = doc(firestore, 'users', username);
 
+      // Check if user already exists in Firestore
       getDoc(userDocRef).then((docSnapshot) => {
         if (docSnapshot.exists()) {
           console.log('User already registered:', username);
-          if (invitedUser) {
-            setInvitedBy(invitedUser); // Davet eden kullanıcıyı ayarla
-          }
-          return;
+          return; // Exit early if the user already exists
         }
 
         // Save username and points to Firestore
         setDoc(userDocRef, {
           username: username,
-          puan: 0,
-          invited_by: invitedUser || null, // Davet eden kullanıcıyı kaydet
+          puan: 0,  // Initial points for the new user
         })
         .then(() => {
           console.log('Username saved to Firestore:', username);
-          if (invitedUser) {
-            setInvitedBy(invitedUser);
-          }
         })
         .catch((error) => {
           console.error('Firestore error:', error);
@@ -65,7 +56,6 @@ const TelegramUsernameDisplay: React.FC = () => {
       {telegramUsername ? (
         <>
           <p>Telegram Kullanıcı Adı: {telegramUsername}</p>
-          {invitedBy && <p>Davet Eden: {invitedBy}</p>}
           <p>
             Davet Linki: <a href={generateInviteLink()} target="_blank" rel="noopener noreferrer">{generateInviteLink()}</a>
           </p>
