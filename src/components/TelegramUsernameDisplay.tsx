@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import WebApp from '@twa-dev/sdk';
-import app from './firebaseConfig'; // Yapılandırmayı buradan içe aktar
+import app from './firebaseConfig';
 import { getFirestore, setDoc, doc } from "firebase/firestore";
 
 const firestore = getFirestore(app);
@@ -15,7 +15,6 @@ const TelegramUsernameDisplay: React.FC = () => {
       const username = initData.user.username;
       setTelegramUsername(username);
 
-      // Kullanıcı adını Firestore'a kaydet
       setDoc(doc(firestore, 'users', username), {
         username: username,
       })
@@ -38,6 +37,13 @@ const TelegramUsernameDisplay: React.FC = () => {
     return 'https://t.me/kastamonmubot';
   };
 
+  const inviteFriends = () => {
+    const link = generateInviteLink();
+    navigator.clipboard.writeText(link).then(() => {
+      alert('Davet linki kopyalandı: ' + link);
+    });
+  };
+
   return (
     <div>
       {telegramUsername ? (
@@ -46,6 +52,7 @@ const TelegramUsernameDisplay: React.FC = () => {
           <p>
             Davet Linki: <a href={generateInviteLink()} target="_blank" rel="noopener noreferrer">{generateInviteLink()}</a>
           </p>
+          <button onClick={inviteFriends}>Arkadaşlarını Davet Et</button>
         </>
       ) : (
         <p>Kullanıcı adı bulunamadı.</p>
