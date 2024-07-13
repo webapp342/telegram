@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import WebApp from '@twa-dev/sdk';
 import app from './firebaseConfig'; // Yapılandırmayı buradan içe aktar
-import { getFirestore, setDoc, doc, getDoc } from "firebase/firestore";
+import { getFirestore, setDoc, doc } from "firebase/firestore";
 
 const firestore = getFirestore(app);
 
@@ -15,27 +15,15 @@ const TelegramUsernameDisplay: React.FC = () => {
       const username = initData.user.username;
       setTelegramUsername(username);
 
-      const userDocRef = doc(firestore, 'users', username);
-
-      // Kullanıcı adını Firestore'a kaydetmeden önce kontrol et
-      getDoc(userDocRef).then((docSnapshot) => {
-        if (docSnapshot.exists()) {
-          console.log('Kullanıcı zaten kayıtlı:', username);
-        } else {
-          // Kullanıcı adı Firestore'a kaydet
-          setDoc(userDocRef, {
-            username: username,
-            puan: 0,  // Yeni kullanıcı için başlangıç puanı
-          })
-          .then(() => {
-            console.log('Kullanıcı adı Firestore\'a kaydedildi:', username);
-          })
-          .catch((error) => {
-            console.error('Firestore hatası:', error);
-          });
-        }
-      }).catch((error) => {
-        console.error('Kullanıcı bilgileri alınırken hata oluştu:', error);
+      // Kullanıcı adını Firestore'a kaydet
+      setDoc(doc(firestore, 'users', username), {
+        username: username,
+      })
+      .then(() => {
+        console.log('Kullanıcı adı Firestore\'a kaydedildi:', username);
+      })
+      .catch((error) => {
+        console.error('Firestore hatası:', error);
       });
     } else {
       console.error('Kullanıcı bilgileri alınamadı veya kullanıcı adı mevcut değil');
