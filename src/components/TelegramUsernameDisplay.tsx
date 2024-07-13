@@ -26,7 +26,7 @@ const TelegramUsernameDisplay: React.FC = () => {
 
         // Save username and points to Firestore
         setDoc(userDocRef, {
-          username: username,  // Ensure this is being saved
+          username: username,  // Save username
           puan: 0,
         })
         .then(() => {
