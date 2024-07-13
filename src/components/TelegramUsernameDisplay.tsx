@@ -12,7 +12,7 @@ const TelegramUsernameDisplay: React.FC = () => {
     if (initData && initData.user && initData.user.username) {
       setTelegramUsername(initData.user.username);
       // Kullanıcı adını backend'e gönder
-      fetch('https://final-8c8k.vercel.app//api/users', {
+      fetch('https://vercel-wheat-one.vercel.app///api/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
