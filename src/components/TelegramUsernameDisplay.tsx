@@ -18,6 +18,7 @@ const TelegramUsernameDisplay: React.FC = () => {
       const userDoc = doc(firestore, 'users', username);
       getDoc(userDoc).then(userSnapshot => {
         if (!userSnapshot.exists()) {
+          // Kullanıcı kaydı yoksa kaydedin
           setDoc(userDoc, {
             username: username,
             points: 0,
@@ -28,7 +29,11 @@ const TelegramUsernameDisplay: React.FC = () => {
             if (inviter) {
               updateInviterPoints(inviter);
             }
+          }).catch((error) => {
+            console.error('Firestore hatası:', error);
           });
+        } else {
+          console.log('Kullanıcı zaten kayıtlı:', username);
         }
       });
     } else {
@@ -47,6 +52,8 @@ const TelegramUsernameDisplay: React.FC = () => {
         points: currentPoints + 100,
       });
       console.log('Davet eden kullanıcının puanı güncellendi:', inviter);
+    } else {
+      console.error('Davet eden kullanıcı bulunamadı:', inviter);
     }
   };
 
