@@ -21,13 +21,13 @@ const TelegramUsernameDisplay: React.FC = () => {
       getDoc(userDocRef).then((docSnapshot) => {
         if (docSnapshot.exists()) {
           console.log('User already registered:', username);
-          return; // Exit early if the user already exists
+          return;
         }
 
         // Save username and points to Firestore
         setDoc(userDocRef, {
-          username: username,  // Save username
-          puan: 0,             // Initial points for the new user
+          username: username,  // Ensure this is being saved
+          puan: 0,
         })
         .then(() => {
           console.log('Username saved to Firestore:', username);
