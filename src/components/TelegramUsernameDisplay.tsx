@@ -25,7 +25,6 @@ const TelegramUsernameDisplay: React.FC = () => {
           // Kullanıcı adı Firestore'a kaydet
           setDoc(userDocRef, {
             username: username,
-            puan: 0,  // Yeni kullanıcı için başlangıç puanı
           })
           .then(() => {
             console.log('Kullanıcı adı Firestore\'a kaydedildi:', username);
